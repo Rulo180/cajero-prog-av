@@ -10,6 +10,11 @@ import java.io.Serializable;
 
 public class CuentaDTO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String nroCuenta;
 	
 	private double saldoCuenta;
