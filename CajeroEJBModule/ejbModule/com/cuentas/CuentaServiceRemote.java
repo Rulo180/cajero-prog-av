@@ -5,7 +5,6 @@ import java.util.Collection;
 import javax.ejb.Remote;
 
 import com.cuentas.dto.CuentaDTO;
-import com.cuentas.entities.Cuenta;
 
 /**
  * Define la interfaz para la CuentaService
@@ -54,6 +53,6 @@ public interface CuentaServiceRemote {
 	 * @param nroCuenta
 	 * @return
 	 */
-	public Cuenta findByNroCuenta(String nroCuenta);
+	public CuentaDTO findByNroCuenta(String nroCuenta);
 
 }
