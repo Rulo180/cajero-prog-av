@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.application.repository.Repository;
-import com.seguridad.entities.Cuenta;
+import com.cuentas.entities.Tarjeta;
 
 /**
  * Repositorio de Almacenamiento de Usuarios del Sistema.
@@ -20,19 +20,27 @@ import com.seguridad.entities.Cuenta;
  */
 @Stateless
 @LocalBean
-public class CuentaRepository implements Repository<String, Cuenta> {
+public class TarjetaRepository implements Repository<Tarjeta, String> {
 	@PersistenceContext(unitName = "cajeroDS")
 	private EntityManager entityManager;
-	
-	@Override
-	public void persist(Cuenta entity) {
 
-		entityManager.persist(entity);
+	@Override
+	public Tarjeta get(String nroTarjeta) {
+		return entityManager.find(Tarjeta.class, nroTarjeta);
+	}
+
+	@Override
+	public List<Tarjeta> listAll() {
+		String q = "SELECT p from " + Tarjeta.class.getName() + " p ";
+		TypedQuery<Tarjeta> query = entityManager.createQuery(q, Tarjeta.class);
+
+		List<Tarjeta> result = query.getResultList();
+		if (result == null) {
+			result = new ArrayList<Tarjeta>();
+		}
+		return result;
 	}
 	
-	@Override
-	public void remove(Cuenta entity) {
-		entityManager.remove(entity);
-	}
+
 	
 }
