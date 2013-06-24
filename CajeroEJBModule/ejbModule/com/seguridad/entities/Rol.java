@@ -18,7 +18,7 @@ public class Rol implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Integer id;
-	private String cuentaId;
+	private String tarjetaId;
 	private String nombre;
 
 	public Rol() {
@@ -33,12 +33,12 @@ public class Rol implements Serializable {
 		this.id = id;
 	}
 
-	public String getCuentaId() {
-		return cuentaId;
+	public String getTarjetaId() {
+		return tarjetaId;
 	}
 
-	public void setCuentaId(String cuentaId) {
-		this.cuentaId = cuentaId;
+	public void setTarjetaId(String tarjetaId) {
+		this.tarjetaId = tarjetaId;
 	}
 
 	public String getNombre() {
