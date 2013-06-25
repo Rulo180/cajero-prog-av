@@ -13,7 +13,6 @@
       <class>com.cuentas.entities.Tarjeta</class>
       <class>com.cuentas.entities.Transaccion</class>
       <class>com.cuentas.entities.TipoTransaccion</class>
-      <class>com.seguridad.entities.Usuario</class>
       <class>com.seguridad.entities.Rol</class>
    </persistence-unit>
 </persistence>
