@@ -1,7 +1,5 @@
 package com.cuentas;
 
-import java.util.Collection;
-
 import javax.ejb.Remote;
 
 import com.cuentas.dto.CuentaDTO;
@@ -42,11 +40,6 @@ public interface CuentaServiceRemote {
 	 */
 	public void transferir(String nroCuenta, String cuentaDestino, double monto);
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public Collection<CuentaDTO> listCuentas();
 	
 	/**
 	 * Busca una cuenta segun el numero de cuenta especificado.

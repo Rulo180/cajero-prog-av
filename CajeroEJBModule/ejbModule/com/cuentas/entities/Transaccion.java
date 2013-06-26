@@ -3,10 +3,11 @@ package com.cuentas.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /*
  * Almacena la informacion relacionada con cada transaccion que se realiza sobre una cuenta.
@@ -22,8 +23,8 @@ public class Transaccion {
 	private Date fechaTransaccion = new Date();
 	private double montoTransaccion;
 	
-	@ManyToOne
-	private TipoTransaccion tipoTransaccion;
+	@Enumerated(EnumType.STRING)
+	private com.cuentas.dto.TipoTransaccion tipoTransaccion;
 	
 	
 	//Constructores
@@ -65,12 +66,12 @@ public class Transaccion {
 	}
 
 
-	public TipoTransaccion getTipoTransaccion() {
+	public com.cuentas.dto.TipoTransaccion getTipoTransaccion() {
 		return tipoTransaccion;
 	}
 
 
-	public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
+	public void setTipoTransaccion(com.cuentas.dto.TipoTransaccion tipoTransaccion) {
 		this.tipoTransaccion = tipoTransaccion;
 	}
 	
