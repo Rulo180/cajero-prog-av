@@ -1,8 +1,5 @@
 package com.cuentas.dto;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import com.cuentas.entities.Cuenta;
 
@@ -25,23 +22,5 @@ public class CuentaDTOFactory {
 		return dto;
 	}
 
-	/**
-	 * Devuelve una lista de DTO de cuentas con la informacion de la lista de cuentas.
-	 * @param cuentas
-	 * @return
-	 */
-	public static Collection<CuentaDTO> getCuentaDTO(Collection<Cuenta> cuentas) {
-		if (cuentas == null){
-			return null;
-		}
-		
-		List<CuentaDTO> dtoList = new ArrayList<CuentaDTO>();
-		
-		for (Cuenta cuenta : cuentas){
-			dtoList.add(getCuentaDTO(cuenta));
-		}
-		
-		return dtoList;
-	}
 
 }

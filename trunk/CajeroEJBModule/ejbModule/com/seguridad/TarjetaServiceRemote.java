@@ -3,7 +3,6 @@ package com.seguridad;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
-import com.application.exceptions.BusinessConstraintViolationException;
 import com.application.exceptions.BusinessException;
 
 import com.seguridad.dto.TarjetaDTO;
@@ -27,7 +26,7 @@ public interface TarjetaServiceRemote {
 	 * @throws BusinessException
 	 * @throws BusinessConstraintViolationException
 	 */
-	void actualizarPin(String pin, String pinAnterior, String pinNuevo) throws BusinessException, BusinessConstraintViolationException;
+	void actualizarPin(String pin, String pinAnterior, String pinNuevo) throws BusinessException;
 	
 
 }

@@ -26,11 +26,11 @@ public class Cuenta implements Serializable{
 	@Id
 	private String nroCuenta;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, orphanRemoval = true)
 	@JoinColumn(name = "cuentaId")
 	private List<Tarjeta> tarjetas;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, orphanRemoval = true)
 	@JoinColumn(name = "cuentaId")
 	private List<Transaccion> transacciones;
 	

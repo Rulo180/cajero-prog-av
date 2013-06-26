@@ -10,7 +10,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import com.application.exceptions.BusinessConstraintViolationException;
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.entities.Tarjeta;
@@ -30,7 +29,7 @@ public class TarjetaService implements TarjetaServiceRemote{
 	private TarjetaRepository tarjetaRepository;
 
 	@EJB
-	private TarjetaServiceValidations seguridadServiceValidations;
+	private TarjetaServiceValidations tarjetaServiceValidations;
 
 
     /**
@@ -47,7 +46,7 @@ public class TarjetaService implements TarjetaServiceRemote{
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public TarjetaDTO findByNroTarjeta(String nroTarjeta) {
-		List<ValidationError> errors = seguridadServiceValidations.validarTarjeta(nroTarjeta);
+		List<ValidationError> errors = tarjetaServiceValidations.validarTarjeta(nroTarjeta);
 		if (errors.size() > 0) {
 			throw new BusinessException("Tarjeta no se encuentra en la DB.", errors);
 		}
@@ -59,8 +58,8 @@ public class TarjetaService implements TarjetaServiceRemote{
 	 * 
 	 */
 	@Override
-	public void actualizarPin(String nroTarjeta, String pinAnterior, String pinNuevo) throws BusinessException, BusinessConstraintViolationException {
-		List<ValidationError> errors = seguridadServiceValidations.validarCambioPin(nroTarjeta, pinAnterior, pinNuevo);
+	public void actualizarPin(String nroTarjeta, String pinAnterior, String pinNuevo) throws BusinessException {
+		List<ValidationError> errors = tarjetaServiceValidations.validarCambioPin(nroTarjeta, pinAnterior, pinNuevo);
 		if (errors.size() > 0) {
 			throw new BusinessException("Datos de usuario invalidos.", errors);
 		}
