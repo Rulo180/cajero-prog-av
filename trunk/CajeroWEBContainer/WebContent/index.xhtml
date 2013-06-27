@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"  />
+	<title>Cajero Automático</title>
+</h:head>
+<h:body>
+	<h:form method="post">
+		<h2>Cajero Automatico - RulenBank</h2>
+		
+		<h:panelGrid>
+			<h:outputText value="Ingrese tarjeta:" />
+			<h:inputText id="nroTarjeta" value="" />
+			
+			<h:outputText value="Ingrese pin:" />
+			<h:inputText id="pinTarjeta" value="" />
+		</h:panelGrid>
+		<h:panelGrid>
+			<h:messages />
+		</h:panelGrid>
+		<h:panelGrid>
+			<h:commandButton value="Login" action="#{authentication.login}" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

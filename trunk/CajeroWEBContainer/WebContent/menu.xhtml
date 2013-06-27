@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"  />
+	<title>Menu de opciones - Cajero Automático</title>
+</h:head>
+<h:body>
+
+	<h:commandButton value="Consulta" action="func/consultarForm?faces-redirect=true"  /><BR />
+	<h:commandButton value="Deposito" action="func/depositarForm?faces-redirect=true"  /><BR />
+	<h:commandButton value="Extraccion" action="func/retirarForm?faces-redirect=true"  /><BR />
+	<h:commandButton value="Transferencia" action="func/transferirForm?faces-redirect=true"  /><BR />
+	
+</h:body>
+</html>
