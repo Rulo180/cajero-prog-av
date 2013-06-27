@@ -10,6 +10,11 @@ import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.CuentaService;
 
+/**
+ * Formulario para llevar a cabo un deposito en un cuenta.
+ * @author Rulo
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class DepositarForm {
@@ -21,11 +26,10 @@ public class DepositarForm {
 	private double monto;
 	
 	
-	
 	public String depositar(){
 		try {
 		cuentaService.depositar(nroCuenta, monto);
-		return "";
+		return null;
 		} catch (BusinessException be) {
 			processBusinessException(be);
 		}
