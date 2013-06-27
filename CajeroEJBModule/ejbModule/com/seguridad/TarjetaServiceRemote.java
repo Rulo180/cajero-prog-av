@@ -27,6 +27,20 @@ public interface TarjetaServiceRemote {
 	 * @throws BusinessConstraintViolationException
 	 */
 	void actualizarPin(String pin, String pinAnterior, String pinNuevo) throws BusinessException;
+
+	/**
+	 * 
+	 * @param nroTarjeta
+	 * @throws BusinessException
+	 */
+	void desactivarTarjeta(String nroTarjeta) throws BusinessException;
+
+	/**
+	 * 
+	 * @param nroTarjeta
+	 * @throws BusinessException
+	 */
+	void activarTarjeta(String nroTarjeta) throws BusinessException;
 	
 
 }

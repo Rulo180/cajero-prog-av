@@ -31,26 +31,12 @@ public class TarjetaService implements TarjetaServiceRemote{
 	@EJB
 	private TarjetaServiceValidations tarjetaServiceValidations;
 
-
-    /**
-     * Default constructor. 
-     */
-    public TarjetaService() {
-        // TODO Auto-generated constructor stub
-    }
-
-    
     /**
      * 
      */
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public TarjetaDTO findByNroTarjeta(String nroTarjeta) {
-		List<ValidationError> errors = tarjetaServiceValidations.validarTarjeta(nroTarjeta);
-		if (errors.size() > 0) {
-			throw new BusinessException("Tarjeta no se encuentra en la DB.", errors);
-		}
-		
 		return TarjetaDTOFactory.getTarjetaDTO(tarjetaRepository.get(nroTarjeta));
 	}
 
@@ -68,6 +54,35 @@ public class TarjetaService implements TarjetaServiceRemote{
 		tarjeta.setPinTarjeta(pinNuevo);
 	}
     
+	/**
+	 * Activa la tarjeta.
+	 * 
+	 */
+	@Override
+	public void activarTarjeta(String nroTarjeta) throws BusinessException {
+		List<ValidationError> errors = tarjetaServiceValidations.validarActivarTarjeta(nroTarjeta);
+		if (errors.size() > 0) {
+			throw new BusinessException("No se puede activar la tarjeta.", errors);
+		}
+
+		Tarjeta tarj = tarjetaRepository.get(nroTarjeta);
+		tarj.setFechaVencimientoTarjeta(null);
+	}
+
+	/**
+	 * Desactiva la tarjeta.
+	 * 
+	 */
+	@Override
+	public void desactivarTarjeta(String nroTarjeta) throws BusinessException {
+		List<ValidationError> errors = tarjetaServiceValidations.validarDesactivarTarjeta(nroTarjeta);
+		if (errors.size() > 0) {
+			throw new BusinessException("No se puede desactivar la tarjeta.", errors);
+		}
+
+		Tarjeta tarj = tarjetaRepository.get(nroTarjeta);
+		tarj.setFechaVencimientoTarjeta(new java.util.Date());
+	}
     
 
 }
