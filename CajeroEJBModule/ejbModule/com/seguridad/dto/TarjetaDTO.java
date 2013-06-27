@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class TarjetaDTO implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	private String nroTarjeta;
 	private String rol;
@@ -11,6 +12,8 @@ public class TarjetaDTO implements Serializable {
 	private Date fechaInicioTarjeta;
 	private Date fechaFinTarjeta;
 	private boolean activada;
+	
+	//Getters y Setters
 	public String getNroTarjeta() {
 		return nroTarjeta;
 	}

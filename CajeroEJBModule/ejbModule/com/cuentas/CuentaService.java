@@ -1,5 +1,6 @@
 package com.cuentas;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.ejb.TransactionAttributeType;
 
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
+import com.cuentas.dto.ConsultaDTO;
+import com.cuentas.dto.ConsultaDTOFactory;
 import com.cuentas.dto.CuentaDTO;
 import com.cuentas.dto.CuentaDTOFactory;
 import com.cuentas.entities.Cuenta;
@@ -40,12 +43,16 @@ public class CuentaService implements CuentaServiceRemote{
     }
 
 	@Override
-	public double getSaldo(String nroCuenta) throws BusinessException {
+	public ConsultaDTO consultar(String nroCuenta) throws BusinessException {
 		List<ValidationError> errors = validator.validarCuenta(nroCuenta);
 		if (errors.size() > 0) {
 			throw new BusinessException("Errores al cargar la cuenta.", errors);
 		} 
-		return cuentaRepository.get(nroCuenta).getSaldoCuenta();
+		
+		double saldo = cuentaRepository.get(nroCuenta).getSaldoCuenta();
+		Collection<Transaccion> transacciones = cuentaRepository.get(nroCuenta).getTransacciones();
+		
+		return ConsultaDTOFactory.getConsultaDTO(nroCuenta, saldo, transacciones);
 	}
 
 	@Override
