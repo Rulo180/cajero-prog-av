@@ -2,6 +2,7 @@ package com.cuentas;
 
 import javax.ejb.Remote;
 
+import com.cuentas.dto.ConsultaDTO;
 import com.cuentas.dto.CuentaDTO;
 
 /**
@@ -18,7 +19,7 @@ public interface CuentaServiceRemote {
 	 * Devuelve el saldo remanente de una cuenta
 	 * @return
 	 */
-	public abstract double getSaldo(String nroCuenta);
+	public abstract ConsultaDTO consultar(String nroCuenta);
 	
 	
 	/**
