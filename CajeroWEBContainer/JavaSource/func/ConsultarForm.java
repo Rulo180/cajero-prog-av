@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.CuentaService;
+import com.cuentas.dto.ConsultaDTO;
+import com.seguridad.dto.TarjetaDTO;
 
 /**
  * Formulario de consulta de estado de cuenta que muestra el saldo y las transacciones asociadas.
@@ -24,10 +26,12 @@ public class ConsultarForm {
 	
 	private String nroCuenta;
 
-	public String consultar(){
+	public ConsultaDTO getConsulta(){
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
+		
 		try{
-			cuentaService.consultar(nroCuenta);
-			return null;
+			return cuentaService.consultar(nroCuenta);
 		} catch (BusinessException be){
 			processBusinessException(be);
 		}
@@ -44,4 +48,9 @@ public class ConsultarForm {
 		}
 	
 	}
+	
+	public String getNroCuenta(){
+		return nroCuenta;
+	}
+	
 }

@@ -6,15 +6,16 @@
 	<title>Cajero Automático</title>
 </h:head>
 <h:body>
+
 	<h:form method="post">
 		<h2>Cajero Automatico - RulenBank</h2>
 		
-		<h:panelGrid>
-			<h:outputText value="Ingrese tarjeta:" />
-			<h:inputText id="nroTarjeta" value="" />
+		<h:panelGrid columns="2">
+			Ingrese tarjeta:
+			<h:inputText id="nroTarjeta" value="#{authentication.nroTarjeta}" />
 			
-			<h:outputText value="Ingrese pin:" />
-			<h:inputText id="pinTarjeta" value="" />
+			Ingrese pin:
+			<h:inputText id="pinTarjeta" value="#{authentication.pinTarjeta}" />
 		</h:panelGrid>
 		<h:panelGrid>
 			<h:messages />

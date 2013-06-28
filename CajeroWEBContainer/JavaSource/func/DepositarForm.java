@@ -29,7 +29,7 @@ public class DepositarForm {
 	public String depositar(){
 		try {
 		cuentaService.depositar(nroCuenta, monto);
-		return null;
+		return "/menu.xhtml?faces-redirect=true";
 		} catch (BusinessException be) {
 			processBusinessException(be);
 		}
@@ -49,6 +49,12 @@ public class DepositarForm {
 		}
 	}
 	
+	public String getNroCuenta(){
+		return nroCuenta;
+	}
 	
+	public double getMonto(){
+		return monto;
+	}
 
 }
