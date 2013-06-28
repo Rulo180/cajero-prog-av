@@ -51,5 +51,12 @@ public class RetirarForm {
 		}
 	}
 	
+	public String getNroCuenta(){
+		return nroCuenta;
+	}
+	
+	public double getMonto(){
+		return monto;
+	}
 
 }
