@@ -7,13 +7,15 @@
 <h:head>
 	<h:outputStylesheet library="css" name="default.css"  />
 
-	<title>Formulario de deposito</title>
+	<title>Deposito - Cajero Automatico</title>
 </h:head> 
 <body> 
+	<h2>Formulario de deposito:</h2>
 	<h:panelGrid columns="2">
 		<h:outputText value="#{depositarForm.nroCuenta}" />
 		<h:inputText value="#{depositarForm.monto}" id="montoDeposito"/>
 	</h:panelGrid>
+	<h:messages />
 	<h:commandButton action="#{depositarForm.depositar()}" value="Aceptar" />
 	<h:commandButton action="menu" value="Volver" />
 </body> 
