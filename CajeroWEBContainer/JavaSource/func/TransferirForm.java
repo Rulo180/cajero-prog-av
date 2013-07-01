@@ -23,6 +23,7 @@ public class TransferirForm {
 	private CuentaService cuentaService;
 	
 	private String cuentaOrigen;
+	private double saldoOrigen;
 	private String cuentaDestino;
 	private double monto;
 	
@@ -58,5 +59,9 @@ public class TransferirForm {
 	
 	public double getMonto(){
 		return monto;
+	}
+	
+	public double getSaldoOrigen(){
+		return saldoOrigen;
 	}
 }

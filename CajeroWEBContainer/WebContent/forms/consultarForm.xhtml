@@ -12,10 +12,10 @@
 <body> 
 	<h2>Estado de cuenta:</h2><br />
 	
-	<h:panelGroup>
-	#{consultarForm.nroCuenta}
-	#{consultarForm.consulta.saldo}
-	</h:panelGroup><br />
+	<h:panelGrid columns="2">
+		#{consultarForm.nroCuenta}
+		#{consultarForm.consulta.saldo}
+	</h:panelGrid><br />
 	
 	<h:dataTable value="#{consultarForm.consulta.transacciones}" var="o" >
 			<h:column>
@@ -36,7 +36,9 @@
 			</h:column>			
 	</h:dataTable>
 	
-	<h:commandButton value="Volver"  action="menu" />
+	<h:messages />
+	
+	<h:commandButton value="Volver"  action="/menu.xhtml" />
 
 </body> 
 </html>

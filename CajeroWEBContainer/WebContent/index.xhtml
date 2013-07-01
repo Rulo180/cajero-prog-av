@@ -7,7 +7,7 @@
 </h:head>
 <h:body>
 
-	<h:form method="post">
+	<h:form method="get">
 		<h2>Cajero Automatico - RulenBank</h2>
 		
 		<h:panelGrid columns="2">
@@ -15,7 +15,7 @@
 			<h:inputText id="nroTarjeta" value="#{authentication.nroTarjeta}" />
 			
 			Ingrese pin:
-			<h:inputText id="pinTarjeta" value="#{authentication.pinTarjeta}" />
+			<h:inputSecret id="pinTarjeta" value="#{authentication.pinTarjeta}" />
 		</h:panelGrid>
 		<h:panelGrid>
 			<h:messages />
