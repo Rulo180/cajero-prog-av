@@ -2,6 +2,7 @@
     <wb-module deploy-name="CajeroWEBContainer">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JavaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="CajeroWEBContainer"/>
         <property name="java-output-path" value="/CajeroWEBContainer/bin"/>
     </wb-module>
