@@ -10,6 +10,7 @@
 	<title>Deposito - Cajero Automatico</title>
 </h:head> 
 <body> 
+<h:form method = "post">
 	<h2>Formulario de deposito:</h2>
 	<h:panelGrid columns="2">
 		<h:outputText value="#{depositarForm.nroCuenta}" />
@@ -17,6 +18,7 @@
 	</h:panelGrid>
 	<h:messages />
 	<h:commandButton action="#{depositarForm.depositar()}" value="Aceptar" />
-	<h:commandButton action="menu" value="Volver" />
+	<h:commandButton action="/menu.xhtml" value="Cancelar" />
+</h:form>
 </body> 
 </html>

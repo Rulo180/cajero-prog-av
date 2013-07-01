@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"  />
+
+	<title>Transferencia - Cajero Automatico</title>
+</h:head> 
+<body> 
+<form method = "post">
+	<h2>Formulario de transferencia:</h2>
+	
+	<h:panelGrid columns ="2">
+		<h:outputText value="#{transferirForm.cuentaOrigen}" />
+		<h:outputText value="#{transferirForm.saldoOrigen}" /><br />
+		
+		Cuenta destino:
+		<h:inputText value="#{transferirForm.cuentaDestino}" />
+		
+		Monto:
+		<h:inputText value="#{transferirForm.monto}" />
+	</h:panelGrid>
+	<h:messages />
+	<h:commandButton value="Aceptar" action="#{transferirForm.transferir()}" />
+	<h:commandButton value="Cancelar" action="/menu.xhtml" />
+</form>
+</body> 
+</html>

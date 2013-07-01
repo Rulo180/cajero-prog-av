@@ -27,11 +27,13 @@ public class ConsultarForm {
 	private String nroCuenta;
 
 	public ConsultaDTO getConsulta(){
+	
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
-		
+		String nroTarjetaTemp = tarjDTO.getNroTarjeta();
+		cuentaService.findByNroTarjeta(nroTarjetaTemp).getNroCuenta();
 		try{
-			return cuentaService.consultar(nroCuenta);
+			return cuentaService.consultar(cuentaService.findByNroTarjeta(nroTarjetaTemp).getNroCuenta());
 		} catch (BusinessException be){
 			processBusinessException(be);
 		}
