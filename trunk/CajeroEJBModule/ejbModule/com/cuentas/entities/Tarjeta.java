@@ -50,7 +50,7 @@ public class Tarjeta implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaVencimientoTarjeta = new Date();
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "tarjetaId")
 	private Rol rol;
 

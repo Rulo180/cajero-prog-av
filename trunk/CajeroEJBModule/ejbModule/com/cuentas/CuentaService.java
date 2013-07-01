@@ -17,6 +17,7 @@ import com.cuentas.dto.ConsultaDTOFactory;
 import com.cuentas.dto.CuentaDTO;
 import com.cuentas.dto.CuentaDTOFactory;
 import com.cuentas.entities.Cuenta;
+import com.cuentas.entities.Tarjeta;
 import com.cuentas.entities.Transaccion;
 import com.cuentas.repository.CuentaRepository;
 
@@ -133,6 +134,20 @@ public class CuentaService implements CuentaServiceRemote{
 	@Override
 	public CuentaDTO findByNroCuenta(String nroCuenta) {
 		return CuentaDTOFactory.getCuentaDTO(cuentaRepository.get(nroCuenta));
+	}
+
+	@Override
+	public CuentaDTO findByNroTarjeta(String nroTarjeta) {
+		List<Cuenta> listaC = cuentaRepository.listAll();
+		
+		for (Cuenta cuenta : listaC){
+			for (Tarjeta tarjeta : cuenta.getTarjetas()){
+				if (tarjeta.getNroTarjeta() == nroTarjeta)
+					break;
+			}
+			return CuentaDTOFactory.getCuentaDTO(cuenta);
+		}
+		return null;
 	}
     
 	
