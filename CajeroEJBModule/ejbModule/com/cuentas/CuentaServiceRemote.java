@@ -48,5 +48,12 @@ public interface CuentaServiceRemote {
 	 * @return
 	 */
 	public CuentaDTO findByNroCuenta(String nroCuenta);
+	
+	/**
+	 * Busca la cuenta que tiene asociada una tarjeta con el numero ingresado.
+	 * @param nroTarjeta
+	 * @return
+	 */
+	public CuentaDTO findByNroTarjeta(String nroTarjeta);
 
 }
