@@ -1,5 +1,6 @@
 package func;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.CuentaService;
+import com.seguridad.dto.TarjetaDTO;
 
 /**
  * Formulario para llevar a cabo una transaccion de una cuenta a otra.
@@ -46,6 +48,19 @@ public class TransferirForm {
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, be.getMessage(), be.getMessage()));
 		}
+		
+	}
+	/**
+	 * Inicializa los atributos que necesita el ManageBean con los parametros del contexto
+	 */
+	@PostConstruct
+	private void initialize() {
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
+		String nroTarjeta = tarjDTO.getNroTarjeta();
+		this.cuentaOrigen = cuentaService.findByNroTarjeta(nroTarjeta).getNroCuenta();
+		this.saldoOrigen = cuentaService.findByNroTarjeta(nroTarjeta).getSaldoCuenta();
 		
 	}
 

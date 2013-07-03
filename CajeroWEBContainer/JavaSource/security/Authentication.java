@@ -39,8 +39,10 @@ public class Authentication {
 			externalContext.getSessionMap().put("nroTarjeta", tarj);
 		    return "/menu.xhtml?faces-redirect=true";
 		} catch (BusinessException e) {
+			e.printStackTrace();
 			context.addMessage(null, new FacesMessage(e.getMessage()));
 		} catch (Exception e) {
+			e.printStackTrace();
 			context.addMessage(null, new FacesMessage("Tarjeta o Pin invalido."));
 		}
 		return null;
