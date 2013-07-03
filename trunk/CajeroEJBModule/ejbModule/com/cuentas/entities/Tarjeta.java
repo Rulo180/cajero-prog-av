@@ -55,11 +55,6 @@ public class Tarjeta implements Serializable{
 	private Rol rol;
 
 	
-	//Constructores
-	
-	public Tarjeta() {
-		super();
-	}
 	
 	//Getters y Setters
 
