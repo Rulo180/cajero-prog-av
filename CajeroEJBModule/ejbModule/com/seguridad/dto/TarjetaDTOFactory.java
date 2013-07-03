@@ -10,18 +10,7 @@ import com.cuentas.entities.Tarjeta;
  */
 public class TarjetaDTOFactory {
 
-	public static TarjetaDTO getTarjetaDTO(Tarjeta tarjeta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/**
-	 * Retorna un TarjetaDTO populado con toda la informacion posible.
-	 * 
-	 * @param u
-	 * @return
-	 */
-	public static TarjetaDTO getAllDataFromTarjeta(Tarjeta u) {
+	public static TarjetaDTO getTarjetaDTO(Tarjeta u) {
 		if (u == null) {
 			return null;
 		}
