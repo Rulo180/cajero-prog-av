@@ -24,6 +24,7 @@ public class RetirarForm {
 	private CuentaService cuentaService;
 	
 	private String nroCuenta;
+	private double saldo;
 	private double monto;
 	
 	
@@ -57,6 +58,12 @@ public class RetirarForm {
 	
 	public double getMonto(){
 		return monto;
+	}
+
+
+
+	public double getSaldo() {
+		return saldo;
 	}
 
 }
