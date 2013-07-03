@@ -12,7 +12,7 @@
 		
 		<h:panelGrid columns="2">
 			Ingrese tarjeta:
-			<h:inputText id="nroTarjeta" value="#{authentication.nroTarjeta}" />
+			<h:inputText id="nroTarjeta" value="#{authentication.nroTarjeta}"/>
 			
 			Ingrese pin:
 			<h:inputSecret id="pinTarjeta" value="#{authentication.pinTarjeta}" />
@@ -21,7 +21,7 @@
 			<h:messages />
 		</h:panelGrid>
 		<h:panelGrid>
-			<h:commandButton value="Login" action="#{authentication.login}" />
+			<h:commandButton value="Login" action="#{authentication.login()}" />
 		</h:panelGrid>
 	</h:form>
 </h:body>
