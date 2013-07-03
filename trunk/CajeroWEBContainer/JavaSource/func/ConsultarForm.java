@@ -1,5 +1,7 @@
 package func;
 
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -28,12 +30,8 @@ public class ConsultarForm {
 
 	public ConsultaDTO getConsulta(){
 	
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
-		String nroTarjetaTemp = tarjDTO.getNroTarjeta();
-		cuentaService.findByNroTarjeta(nroTarjetaTemp).getNroCuenta();
 		try{
-			return cuentaService.consultar(cuentaService.findByNroTarjeta(nroTarjetaTemp).getNroCuenta());
+			return cuentaService.consultar(cuentaService.findByNroCuenta(nroCuenta).getNroCuenta());
 		} catch (BusinessException be){
 			processBusinessException(be);
 		}
@@ -49,6 +47,18 @@ public class ConsultarForm {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, be.getMessage(), be.getMessage()));
 		}
 	
+	}
+	/**
+	 * Inicializa los atributos que necesita el ManageBean con los parametros del contexto
+	 */
+	@PostConstruct
+	private void initialize() {
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
+		String nroTarjeta = tarjDTO.getNroTarjeta();
+		this.nroCuenta = cuentaService.findByNroTarjeta(nroTarjeta).getNroCuenta();
+		
 	}
 	
 	public String getNroCuenta(){
