@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.seguridad.entities.Rol;
+import com.seguridad.dto.RolSeguridad;
+
 
 /**
  * Tarjetas del sistema, esta entidad es utilizada por los mecanismos de
@@ -33,7 +36,6 @@ public class Tarjeta implements Serializable{
 	@Id
 	@NotEmpty()
 	@Size(max = 128)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String nroTarjeta;
 	
 	@NotEmpty()
@@ -50,9 +52,8 @@ public class Tarjeta implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaVencimientoTarjeta = new Date();
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "tarjetaId")
-	private Rol rol;
+@Enumerated(EnumType.STRING)
+	private RolSeguridad rol;
 
 	
 	
@@ -93,11 +94,11 @@ public class Tarjeta implements Serializable{
 		this.fechaInicioTarjeta = fechaInicioTarjeta;
 	}	
 	
-	public Rol getRol() {
+	public RolSeguridad getRol() {
 		return rol;
 	}
 
-	public void setRol(Rol rol) {
+	public void setRol(RolSeguridad rol) {
 		this.rol = rol;
 	}
 }
