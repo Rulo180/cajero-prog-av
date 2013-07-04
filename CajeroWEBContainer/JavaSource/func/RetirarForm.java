@@ -1,5 +1,6 @@
 package func;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.CuentaService;
+import com.seguridad.dto.TarjetaDTO;
 
 
 /**
@@ -32,7 +34,7 @@ public class RetirarForm {
 	public String retirar(){
 		try {
 		cuentaService.retirar(nroCuenta, monto);
-		return "";
+		return "/menu.xhtml?faces-redirect=true";
 		} catch (BusinessException be) {
 			processBusinessException(be);
 		}
@@ -50,6 +52,17 @@ public class RetirarForm {
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, be.getMessage(), be.getMessage()));
 		}
+	}
+	
+	@PostConstruct
+	private void initialize() {
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
+		String nroTarjeta = tarjDTO.getNroTarjeta();
+		this.nroCuenta = cuentaService.findByNroTarjeta(nroTarjeta).getNroCuenta();
+		this.saldo = cuentaService.findByNroTarjeta(nroTarjeta).getSaldoCuenta();
+		
 	}
 	
 	public String getNroCuenta(){

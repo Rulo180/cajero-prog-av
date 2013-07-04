@@ -10,12 +10,14 @@
 	<title>Transferencia - Cajero Automatico</title>
 </h:head> 
 <body> 
-<form method = "post">
+<form method = "get">
 	<h2>Formulario de transferencia:</h2>
 	
 	<h:panelGrid columns ="2">
+		Nro de cuenta:
 		<h:outputText value="#{transferirForm.cuentaOrigen}" />
-		<h:outputText value="#{transferirForm.saldoOrigen}" /><br />
+		Saldo disponible:
+		$<h:outputText value="#{transferirForm.saldoOrigen}" /><br />
 		
 		Cuenta destino:
 		<h:inputText value="#{transferirForm.cuentaDestino}" />
