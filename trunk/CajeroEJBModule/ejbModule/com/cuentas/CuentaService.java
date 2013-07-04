@@ -20,6 +20,7 @@ import com.cuentas.entities.Cuenta;
 import com.cuentas.entities.Tarjeta;
 import com.cuentas.entities.Transaccion;
 import com.cuentas.repository.CuentaRepository;
+import com.cuentas.repository.TransaccionRepository;
 
 /**
  * Session Bean implementation class CuentaService
@@ -31,6 +32,9 @@ public class CuentaService implements CuentaServiceRemote{
 	
 	@EJB
 	private CuentaRepository cuentaRepository;
+	
+	@EJB
+	private TransaccionRepository transaccionRepository;
 	
 	@EJB
 	private CuentaServiceValidation validator;
@@ -66,9 +70,10 @@ public class CuentaService implements CuentaServiceRemote{
 		Transaccion transaccion = new Transaccion();
 		List<Transaccion> transacciones = cuenta.getTransacciones();
 		
-		transaccion.setTipoTransaccion(com.cuentas.dto.TipoTransaccion.EXTRACCION);
+		transaccion.setTipoTransaccion(com.cuentas.dto.TipoTransaccion.DEPOSITO);
 		transaccion.setFechaTransaccion(new Date());
 		transaccion.setMontoTransaccion(monto);
+		transaccionRepository.save(transaccion);
 		transacciones.add(transaccion);
 		
 		cuenta.setTransacciones(transacciones);
@@ -89,22 +94,28 @@ public class CuentaService implements CuentaServiceRemote{
 		transaccion.setTipoTransaccion(com.cuentas.dto.TipoTransaccion.EXTRACCION);
 		transaccion.setFechaTransaccion(new Date());
 		transaccion.setMontoTransaccion(monto);
+		transaccionRepository.save(transaccion);
 		transacciones.add(transaccion);
 		
-		cuenta.setSaldoCuenta(cuenta.getSaldoCuenta() - monto);
 		cuenta.setTransacciones(transacciones);
+		cuenta.setSaldoCuenta(cuenta.getSaldoCuenta() - monto);
 		
 	}
 
 	@Override
 	public void transferir(String nroCuenta, String cuentaDestino, double monto) throws BusinessException{
-		List<ValidationError> errors = validator.validarTransferencia(nroCuenta, cuentaDestino, monto);
-		if (errors.size() > 0) {
-			throw new BusinessException("Errores al realizar el transferencia.", errors);
+		List<ValidationError> errores = validator.validarTransferencia(nroCuenta, cuentaDestino, monto);
+		if (errores.size() > 0) {
+			throw new BusinessException("Errores al realizar el transferencia.", errores);
 		} 
 		
 		Cuenta cuenta = cuentaRepository.get(nroCuenta);
 		Cuenta destino = cuentaRepository.get(cuentaDestino);
+		
+		List<ValidationError> erroresDestino = validator.validarCuenta(cuentaDestino);
+		if (erroresDestino.size() > 0) {
+			throw new BusinessException("Errores al realizar el transferencia.", erroresDestino);
+		} 
 		
 		Transaccion transaccionOrigen = new Transaccion();
 		Transaccion transaccionDestino = new Transaccion();

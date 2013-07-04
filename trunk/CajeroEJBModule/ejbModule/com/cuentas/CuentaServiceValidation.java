@@ -76,8 +76,8 @@ public class CuentaServiceValidation {
 		if (cuenta == null){
 			errores.add(new ValidationError("nroCuenta", "La cuenta especificada no existe en la BD."));
 		}
-		if (0 < monto && monto <= MAX_DEPOSITO){
-			errores.add(new ValidationError("monto", "El monto de deposito debe ser mayor a 0 y menor a" + MAX_DEPOSITO));
+		if (0 > monto || monto > MAX_DEPOSITO){
+			errores.add(new ValidationError("monto", "El monto de deposito debe ser mayor a 0 y menor a " + MAX_DEPOSITO));
 		}
 		return errores;
 	}
