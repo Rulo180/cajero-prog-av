@@ -12,6 +12,11 @@ import javax.persistence.TypedQuery;
 import com.application.repository.Repository;
 import com.cuentas.entities.Transaccion;
 
+/**
+ * Repositorio que se encarga del manejo de las Transaccion con la BD
+ * @author Rulo
+ *
+ */
 @Stateless
 @LocalBean
 public class TransaccionRepository implements Repository<Transaccion, Integer>{
@@ -36,6 +41,10 @@ public class TransaccionRepository implements Repository<Transaccion, Integer>{
 		return result;
 	}
 
+	/**
+	 * Almacena una transaccion en la BD.
+	 * @param t
+	 */
 	public void save(Transaccion t){
 		manager.persist(t);
 	}
