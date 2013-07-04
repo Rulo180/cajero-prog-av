@@ -1,5 +1,6 @@
 package func;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import com.application.exceptions.BusinessException;
 import com.application.exceptions.ValidationError;
 import com.cuentas.CuentaService;
+import com.seguridad.dto.TarjetaDTO;
 
 /**
  * Formulario para llevar a cabo un deposito en un cuenta.
@@ -49,6 +51,16 @@ public class DepositarForm {
 		}
 	}
 	
+	@PostConstruct
+	private void initialize() {
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		TarjetaDTO tarjDTO = (TarjetaDTO) facesContext.getExternalContext().getSessionMap().get("nroTarjeta");
+		String nroTarjeta = tarjDTO.getNroTarjeta();
+		this.nroCuenta = cuentaService.findByNroTarjeta(nroTarjeta).getNroCuenta();
+		
+	}
+	
 	public String getNroCuenta(){
 		return nroCuenta;
 	}
@@ -57,4 +69,7 @@ public class DepositarForm {
 		return monto;
 	}
 
+	public void setMonto(double valor){
+		this.monto = valor;
+	}
 }

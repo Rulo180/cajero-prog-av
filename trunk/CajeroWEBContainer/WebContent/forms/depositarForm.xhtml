@@ -13,12 +13,14 @@
 <h:form method = "post">
 	<h2>Formulario de deposito:</h2>
 	<h:panelGrid columns="2">
+		Nro de cuenta:
 		<h:outputText value="#{depositarForm.nroCuenta}" />
+		Monto a depositar:
 		<h:inputText value="#{depositarForm.monto}" id="montoDeposito"/>
 	</h:panelGrid>
 	<h:messages />
 	<h:commandButton action="#{depositarForm.depositar()}" value="Aceptar" />
-	<h:commandButton action="/menu" value="Cancelar" />
+	<h:commandButton value="Cancelar" action="/menu" />
 </h:form>
 </body> 
 </html>

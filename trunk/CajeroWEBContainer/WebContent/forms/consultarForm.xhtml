@@ -13,11 +13,13 @@
 	<h2>Estado de cuenta:</h2><br />
 	
 	<h:panelGrid columns="2">
-		#{consultarForm.nroCuenta}
-		#{consultarForm.consulta.saldo}
+		Nro de cuenta:
+		#{consultarForm.nroCuenta}<br />
+		Saldo disponible:
+		$ #{consultarForm.consulta.saldo}
 	</h:panelGrid><br />
-	
-	<h:dataTable value="#{consultarForm.consulta.transacciones}" var="o" >
+	Transacciones:
+	<h:dataTable value="#{consultarForm.consulta.transacciones}" var="o" border="1" cellspacing="1">
 			<h:column>
 				<f:facet name="header">Id</f:facet>
 				#{o.transaccionId}
@@ -38,7 +40,6 @@
 	
 	<h:messages />
 	
-	<h:commandButton value="Volver"  action="/menu" />
-
+	<h:link value="Volver" outcome="/menu" />
 </body> 
 </html>
