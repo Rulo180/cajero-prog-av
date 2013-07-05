@@ -127,12 +127,14 @@ public class CuentaService implements CuentaServiceRemote{
 		transaccionOrigen.setMontoTransaccion(monto);
 		transaccionOrigen.setTipoTransaccion(com.cuentas.dto.TipoTransaccion.TRANSFERENCIA_EFECTUADA);
 		transaccionesOrigen.add(transaccionOrigen);
+		transaccionRepository.save(transaccionOrigen);
 		
 		//Creacion y asignacion de transaccion destino
 		transaccionDestino.setFechaTransaccion(new Date());
 		transaccionDestino.setMontoTransaccion(monto);
 		transaccionDestino.setTipoTransaccion(com.cuentas.dto.TipoTransaccion.TRANSFERENCIA_RECIBIDA);
 		transaccionesDestino.add(transaccionDestino);
+		transaccionRepository.save(transaccionDestino);
 		
 		//Actualizacion de las cuentas origen y destino de la transferencia
 		cuenta.setSaldoCuenta(cuenta.getSaldoCuenta() - monto);
